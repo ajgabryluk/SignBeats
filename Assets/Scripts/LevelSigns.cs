@@ -11,7 +11,7 @@ public class LevelSigns : MonoBehaviour
     public Dictionary<int, GameObject> activeSigns = new Dictionary<int, GameObject>();
     public int currentRow = 0;
     public Transform[] dotPositions;
-    public Transform canvas;
+    public Transform rhythmBox;
 
     public void level1PositionsIntialization()
     {
@@ -41,7 +41,7 @@ public class LevelSigns : MonoBehaviour
             foreach(KeyValuePair<int, string> placement in levelPositions[currentRow])
             {  
                 Vector3 spawnPosition = dotPositions[placement.Key].position;
-                GameObject newObject = Instantiate(levelSigns[placement.Value], spawnPosition, Quaternion.identity, canvas);
+                GameObject newObject = Instantiate(levelSigns[placement.Value], spawnPosition, Quaternion.identity, rhythmBox);
                 activeSigns[placement.Key] = newObject;
             }
             currentRow++;
