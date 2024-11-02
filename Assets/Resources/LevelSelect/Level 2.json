@@ -1,7 +1,7 @@
 {
-    "song": "SONG_TITLE_HERE",
+    "song": "LEVEL 2 TEST",
     "bpm": "120",
     "stars": 0,
-    "difficulty": "easy",
-    "words": ["cat", "dad", "yellow", "where", "red"]
+    "difficulty": "Medium",
+    "words": ["green", "mom", "dog", "look", "window"]
 }

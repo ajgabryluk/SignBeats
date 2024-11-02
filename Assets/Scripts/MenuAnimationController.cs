@@ -5,6 +5,7 @@ using UnityEngine;
 public class MenuAnimationController : MonoBehaviour
 {
     public Animator menuController;
+    public Animator levelInfoController;
 
     public void ToLevels()
     {
@@ -15,4 +16,13 @@ public class MenuAnimationController : MonoBehaviour
     {
         menuController.SetTrigger("BackHome");
     }
+    public void levelInfoIn()
+    {
+        levelInfoController.SetBool("LevelIn", true);
+    }
+    public void levelInfoOut()
+    {
+        levelInfoController.SetBool("LevelIn", false);
+    }
+
 }
