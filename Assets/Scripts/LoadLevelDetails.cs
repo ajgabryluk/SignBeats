@@ -24,6 +24,7 @@ public class LoadLevelDetails : MonoBehaviour
     public void LoadSongData()
     {
         string fileName = $"Level {transform.GetChild(0).gameObject.GetComponent<TMP_Text>().text}";
+        GameSettings.selectedLevel = int.Parse(transform.GetChild(0).gameObject.GetComponent<TMP_Text>().text);
         TextAsset jsonFile = Resources.Load<TextAsset>(Path.Combine(resourcePath, fileName));
         songData = JsonUtility.FromJson<SongData>(jsonFile.text);
     }
