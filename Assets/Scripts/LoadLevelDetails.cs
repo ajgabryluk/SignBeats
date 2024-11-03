@@ -33,8 +33,12 @@ public class LoadLevelDetails : MonoBehaviour
         if (songData != null)
         {
             title.text = songData.song;
-            difficulty.text = $"[{songData.difficulty}]";
+            difficulty.text = $"Difficulty: [{songData.difficulty}]";
             words.text = $"Words: [{string.Join(", ", songData.words)}]";
+
+            GameSettings.songTitle = songData.song;
+            GameSettings.wordsPerLevel = new List<string>(songData.words);
+            Debug.Log(GameSettings.wordsPerLevel[0]);
         }
     }
 }
