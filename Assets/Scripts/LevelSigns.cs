@@ -22,7 +22,6 @@ public class LevelSigns : MonoBehaviour
         levelPositions[2] = new Dictionary<int, string> { { 0, "Dad" },  { 1, "Dad" },  { 2, "Dad" } };
         levelPositions[3] = new Dictionary<int, string> { { 4, "Dad" },  { 5, "Dad" },  { 6, "Dad" } };
     }  
-
     public void PlaceSigns()
     {
         //Only trigger when it is the first beat of a measure
@@ -47,7 +46,7 @@ public class LevelSigns : MonoBehaviour
             currentRow++;
         }
     }
-    public void LightUpSign()
+    public void LightUpSign() 
     {
         if(activeSigns.ContainsKey(GameSettings.dotIndex))
         {
@@ -58,7 +57,6 @@ public class LevelSigns : MonoBehaviour
             }
         }
     }
-
     public void CompleteSign()
     {
         if(activeSigns.ContainsKey(GameSettings.dotIndex - 1))
