@@ -9,6 +9,7 @@ public class LevelTransition : MonoBehaviour
     public float transitionTime = 1f;
     public void LoadNextLevel(string sceneName)
     {
+        Time.timeScale = 1f;
         StartCoroutine(LoadLevel(sceneName));
     }
     IEnumerator LoadLevel(string sceneName)

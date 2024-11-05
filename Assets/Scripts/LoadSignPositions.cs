@@ -1,46 +1,34 @@
 using System.Collections.Generic;
 using System.IO;
+using Newtonsoft.Json;
 using UnityEngine;
 
 public class LoadSignPositions : MonoBehaviour
 {
-    [System.Serializable]
     public class RhythmData
     {
-        public List<Dictionary<string, string>> rhythm;
-        public List<int> playedMeasures;
+        public List<Dictionary<string, string>> rhythm { get; set; }
+        public List<int> playedMeasures { get; set; }
     }
 
-    public string resourcePath = "LevelDesigns"; // Path within the Resources folder
+    public string jsonFilePath = "Resources/LevelDesigns";  // Update with the path to your JSON file
+    public List<Dictionary<int, string>> levelPositions = new List<Dictionary<int, string>>();
     public RhythmData loadedData;
 
-    void Start()
-    {
-        LoadJson();
-    }
 
-    private void LoadJson()
+    public void LoadJson()
     {
-        string fileName = $"Level {GameSettings.selectedLevel}";
-        TextAsset jsonfile = Resources.Load<TextAsset>(Path.Combine(resourcePath, fileName));
-        loadedData = JsonUtility.FromJson<RhythmData>(jsonfile.text);
+        string fileName = $"Level {GameSettings.selectedLevel}.json";
+        string jsonContent = File.ReadAllText(Path.Combine(Application.dataPath, jsonFilePath, fileName));
+        loadedData = JsonConvert.DeserializeObject<RhythmData>(jsonContent);
 
-        // Log the parsed data for verification
-        Debug.Log("Loaded Rhythm Data:");
         for (int i = 0; i < loadedData.rhythm.Count; i++)
         {
-            Debug.Log($"Rhythm {i}:");
+            levelPositions.Add(new Dictionary<int, string>());
             foreach (var pair in loadedData.rhythm[i])
             {
-                Debug.Log($"  Time {pair.Key}: {pair.Value}");
+                levelPositions[i][int.Parse(pair.Key)] = pair.Value;
             }
         }
-
-        Debug.Log("Played Measures:");
-        foreach (int measure in loadedData.playedMeasures)
-        {
-            Debug.Log(measure);
-        }
-
     }
 }

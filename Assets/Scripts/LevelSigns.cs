@@ -6,22 +6,30 @@ using UnityEngine.UI;
 
 public class LevelSigns : MonoBehaviour
 {
-    public Dictionary<int, string>[] levelPositions = new Dictionary<int, string>[8];
-    public Dictionary<string, GameObject> levelSigns = new Dictionary<string, GameObject>();
+    public LoadSignPositions levelData;
+    public List<Dictionary<int, string>> levelPositions = new List<Dictionary<int, string>>();
+    public List<int> playedMeasures;
+
+    public GameObject signPill;
+    public Dictionary<string, Sprite> levelSigns = new Dictionary<string, Sprite>();
     public Dictionary<int, GameObject> activeSigns = new Dictionary<int, GameObject>();
     public int currentRow = 0;
+    public int currentMeasure = 0;
+    public string currentSign = "";
+
     public Transform[] dotPositions;
     public Transform rhythmBox;
 
-    public void level1PositionsIntialization()
+    void Start()
     {
-        levelSigns["Dad"] = Resources.Load("SignPrefabs/Dad") as GameObject; 
-
-        levelPositions[0] = new Dictionary<int, string> { { 0, "Dad" },  { 3, "Dad" },  { 7, "Dad" } };
-        levelPositions[1] = new Dictionary<int, string> { { 0, "Dad" },  { 2, "Dad" },  { 3, "Dad" } };
-        levelPositions[2] = new Dictionary<int, string> { { 0, "Dad" },  { 1, "Dad" },  { 2, "Dad" } };
-        levelPositions[3] = new Dictionary<int, string> { { 4, "Dad" },  { 5, "Dad" },  { 6, "Dad" } };
-    }  
+        foreach(string word in GameSettings.wordsPerLevel)
+        {
+            levelSigns[word] = Resources.Load<Sprite>($"Images/SignImages/{word}Normal");
+        }
+        levelData.LoadJson();
+        levelPositions = levelData.levelPositions;
+        playedMeasures = levelData.loadedData.playedMeasures;
+    }
     public void PlaceSigns()
     {
         //Only trigger when it is the first beat of a measure
@@ -36,12 +44,17 @@ public class LevelSigns : MonoBehaviour
                 }
                 activeSigns = new Dictionary<int, GameObject>();
             }
-            //Place the signs that are meant to be active
-            foreach(KeyValuePair<int, string> placement in levelPositions[currentRow])
-            {  
-                Vector3 spawnPosition = dotPositions[placement.Key].position;
-                GameObject newObject = Instantiate(levelSigns[placement.Value], spawnPosition, Quaternion.identity, rhythmBox);
-                activeSigns[placement.Key] = newObject;
+            if(playedMeasures.Contains(currentRow))
+            {
+                //Place the signs that are meant to be active
+                foreach(KeyValuePair<int, string> placement in levelPositions[currentMeasure])
+                {  
+                    Vector3 spawnPosition = dotPositions[placement.Key].position;
+                    GameObject newObject = Instantiate(signPill, spawnPosition, Quaternion.identity, rhythmBox);
+                    newObject.GetComponent<Image>().sprite = levelSigns[placement.Value];
+                    activeSigns[placement.Key] = newObject;
+                }
+                currentMeasure++;
             }
             currentRow++;
         }
@@ -52,10 +65,16 @@ public class LevelSigns : MonoBehaviour
         {
             if(activeSigns[GameSettings.dotIndex] != null)
             {
-                string signName = levelPositions[currentRow - 1][GameSettings.dotIndex];
+                string signName = levelPositions[currentMeasure - 1][GameSettings.dotIndex];
+                currentSign = signName;
                 activeSigns[GameSettings.dotIndex].GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/SignImages/{signName}Highlighted");
             }
         }
+        else
+        {
+            currentSign = "";
+        }
+        Debug.Log(currentSign);
     }
     public void CompleteSign()
     {
@@ -63,15 +82,10 @@ public class LevelSigns : MonoBehaviour
         {
             if(activeSigns[GameSettings.dotIndex - 1] != null)
             {
-                string signName = levelPositions[currentRow - 1][GameSettings.dotIndex - 1];
+                string signName = levelPositions[currentMeasure - 1][GameSettings.dotIndex - 1];
                 activeSigns[GameSettings.dotIndex - 1].GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/SignImages/{signName}Completed");   
             }
         }
-    }
-
-    void Start()
-    {
-        level1PositionsIntialization();
     }
 }
 

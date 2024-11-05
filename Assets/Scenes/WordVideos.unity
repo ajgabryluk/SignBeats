@@ -1311,6 +1311,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1380463962}
   m_CullTransparentMesh: 1
+--- !u!114 &1579240210 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2755778754205883254, guid: 97fc544c1f0baec4dafc10e8038907ba, type: 3}
+  m_PrefabInstance: {fileID: 322409363}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9813ceceb9c2a9d458dfa36eec7cb2e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1779866353
 GameObject:
   m_ObjectHideFlags: 0
@@ -1393,7 +1404,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1779866356}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1579240210}
+        m_TargetAssemblyTypeName: LevelTransition, Assembly-CSharp
+        m_MethodName: LoadNextLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: GameScene
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1779866356
 MonoBehaviour:
   m_ObjectHideFlags: 0
