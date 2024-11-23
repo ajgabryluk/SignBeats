@@ -1,13 +1,20 @@
 {
     "rhythm":
     [
-        {"0":"Dad", "3": "Cat", "7": "Yellow"},
-        {"0":"Red", "1": "Where", "2": "Dad"},
-        {"1":"Dad", "3": "Cat", "6": "Red"},
-        {"4":"Dad", "5": "Cat", "6": "Dad"}
+        {"0":"Watch", "1": "Watch", "5": "Hand"},
+        {"1":"Dance", "3": "Sing", "5": "Dance", "7": "Watch"},
+        {"1": "Watch", "5": "Hand"},
+        {"1":"Dance", "3": "Sing", "5": "Dance", "7": "Chicken"},
+        {"0":"Chicken", "1":"Chicken","2":"Chicken","3":"Chicken","4":"Chicken","5":"Chicken","6":"Chicken"},
+        {"2":"Chicken"},
+        {"7": "Watch"},
+        {"1": "Watch", "5": "Hand"},
+        {"1":"Dance", "3": "Sing", "5": "Dance", "7": "Watch"},
+        {"1": "Watch", "3":"Watch", "5": "Hand"},
+        {"1":"Dance", "3": "Sing", "5": "Dance"}
     ],
     "playedMeasures":
     [
-        0,1,2,3
+        0,1,2,3,4,5,11,12,13,14,15
     ]
 }
