@@ -9,6 +9,7 @@ public class LoadSignPositions : MonoBehaviour
     {
         public List<Dictionary<string, string>> rhythm { get; set; }
         public List<int> playedMeasures { get; set; }
+        public List<string> lyrics { get; set; }
     }
 
     public string jsonFilePath = "Resources/LevelDesigns";  // Update with the path to your JSON file
@@ -21,7 +22,7 @@ public class LoadSignPositions : MonoBehaviour
         string fileName = $"Level {GameSettings.selectedLevel}.json";
         string jsonContent = File.ReadAllText(Path.Combine(Application.dataPath, jsonFilePath, fileName));
         loadedData = JsonConvert.DeserializeObject<RhythmData>(jsonContent);
-
+        Debug.Log(loadedData.lyrics);
         for (int i = 0; i < loadedData.rhythm.Count; i++)
         {
             levelPositions.Add(new Dictionary<int, string>());
