@@ -90,7 +90,7 @@ public class LevelSigns : MonoBehaviour
         {
             currentSign = "";
         }
-        Debug.Log(currentSign);
+        //Debug.Log(currentSign);
     }
     public void CompleteSign()
     {
