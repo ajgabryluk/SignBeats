@@ -1242,7 +1242,6 @@ GameObject:
   - component: {fileID: 808555551}
   - component: {fileID: 808555550}
   - component: {fileID: 808555552}
-  - component: {fileID: 808555553}
   - component: {fileID: 808555554}
   m_Layer: 0
   m_Name: GameControllers
@@ -1473,22 +1472,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jsonFilePath: Resources/LevelDesigns
---- !u!114 &808555553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808555547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd45dea74f838c847aa21a28d2e7ab9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentSign: 
-  signInfo: {fileID: 808555548}
-  score: 0
-  scoreText: {fileID: 116119858}
 --- !u!114 &808555554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1501,6 +1484,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39de7420386d594e9e2f4a76925cb6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recognizedSign: 
+  scoreText: {fileID: 436560889}
 --- !u!1 &902905188
 GameObject:
   m_ObjectHideFlags: 0

@@ -111,7 +111,7 @@ namespace Common {
             var filteredMapping = indices.Select(idx => input.mapping[idx]).ToList();
             var filteredProbabilities = indices.Select(idx => input.probabilities[idx]).ToArray();
             
-            Debug.Log("Focus Sublist: " + filteredMapping.Count + ", " + filteredProbabilities.Length);
+            //Debug.Log("Focus Sublist: " + filteredMapping.Count + ", " + filteredProbabilities.Length);
 
             return new FilterUnit<T>(filteredMapping, filteredProbabilities);
         }

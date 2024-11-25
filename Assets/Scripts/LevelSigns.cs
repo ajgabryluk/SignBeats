@@ -100,6 +100,11 @@ public class LevelSigns : MonoBehaviour
             {
                 string signName = levelPositions[currentMeasure - 1][GameSettings.dotIndex - 1];
                 activeSigns[GameSettings.dotIndex - 1].GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/SignImages/{signName}Completed");   
+                GetComponent<TriggerRecognizer>().RunRecognizer();
+                string recognizedSign = GetComponent<TriggerRecognizer>().recognizedSign;
+                Debug.Log("Displayed Sign: " + signName);
+                Debug.Log("Recognized Sign: " + recognizedSign);
+                GetComponent<TriggerRecognizer>().ChangeScore(signName.ToLower() == recognizedSign);
             }
         }
     }
