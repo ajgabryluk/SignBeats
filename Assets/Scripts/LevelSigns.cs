@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class LevelSigns : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class LevelSigns : MonoBehaviour
 
     public Transform[] dotPositions;
     public Transform rhythmBox;
+    public GameObject lyrics;
+    public Animator player;
+    public Animator enemy;
 
     void Start()
     {
@@ -29,6 +33,7 @@ public class LevelSigns : MonoBehaviour
         levelData.LoadJson();
         levelPositions = levelData.levelPositions;
         playedMeasures = levelData.loadedData.playedMeasures;
+        lyrics.transform.Find("Viewport/Content").gameObject.GetComponent<TMP_Text>().text = string.Join("\n", levelData.loadedData.lyrics);
     }
     public void PlaceSigns()
     {
@@ -46,6 +51,8 @@ public class LevelSigns : MonoBehaviour
             }
             if(playedMeasures.Contains(currentRow))
             {
+                player.SetBool("Bounce", true);
+                enemy.SetBool("SideToSide", false);
                 //Place the signs that are meant to be active
                 foreach(KeyValuePair<int, string> placement in levelPositions[currentMeasure])
                 {  
@@ -56,7 +63,16 @@ public class LevelSigns : MonoBehaviour
                 }
                 currentMeasure++;
             }
+            else
+            {
+                player.SetBool("Bounce", false);
+                enemy.SetBool("SideToSide", true);
+            }
             currentRow++;
+        }
+        else if(GameSettings.dotIndex == 7)
+        {
+            StartCoroutine(lyrics.GetComponent<LyricsScroll>().LerpOverTime());
         }
     }
     public void LightUpSign() 

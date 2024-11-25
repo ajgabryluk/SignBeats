@@ -6,19 +6,37 @@ using UnityEngine.UI;
 public class LyricsScroll : MonoBehaviour
 {
     public ScrollRect lyricBox;
+    public float scrollAmount = .1f;
+    public float lerpTime = 1f;
+    // void Start()
+    // {
+    //     //lyricBox.verticalNormalizedPosition = 1f;
+    // }
+    // void Update()
+    // {
+    //     // Trigger the lerp when the space key is pressed
+    //     if (Input.GetKeyDown(KeyCode.Space))
+    //     {
+    //         StartCoroutine(LerpOverTime());
+    //     }
+    // }
     void Start()
     {
-        //lyricBox.verticalNormalizedPosition = 1f;
+        
     }
-    void Update()
+    public IEnumerator LerpOverTime()
     {
-        if(Input.GetKeyDown(KeyCode.UpArrow))
+        float timeElapsed = 0;
+        float startingScrollPosition = lyricBox.verticalNormalizedPosition; 
+
+        while (timeElapsed < lerpTime)
         {
-            lyricBox.verticalNormalizedPosition += 0.15f;
+            lyricBox.verticalNormalizedPosition = Mathf.Lerp(startingScrollPosition, startingScrollPosition - scrollAmount, timeElapsed / lerpTime);
+            timeElapsed += Time.deltaTime;
+            yield return null;
         }
-        if(Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            lyricBox.verticalNormalizedPosition -= 0.15f;
-        }
+
+        // Ensure the object reaches the final position
+        lyricBox.verticalNormalizedPosition = startingScrollPosition - scrollAmount;
     }
 }
