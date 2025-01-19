@@ -32,7 +32,7 @@ namespace Engine {
             public static readonly int NumInputPoints = 21;
         }
 
-        void Awake()
+        void Start()
         {
             buffer = new Buffer<HandLandmarkerResult>();
             string[] mapping = mappingFile.text.Split("\n");
@@ -47,7 +47,7 @@ namespace Engine {
             posePredictor = new MediapipeHandModelManager(mediapipeGraph.bytes, RunningMode.LIVE_STREAM);
 
             posePredictor.AddCallback("buffer", result =>
-            {
+            {                        
                 if (result.Result.handLandmarks == null || result.Result.handLandmarks.Count <= 0 ||
                     result.Result.handLandmarks[0].landmarks.Count <= 0) { }
                 else {
@@ -65,11 +65,11 @@ namespace Engine {
 
                 if (bufferedResults.Count <= 0) return;
                 
-                //Debug.Log("Starting Buffer trigger: Interpolating=" + isInterpolating);
+                Debug.Log("Starting Buffer trigger: Interpolating=" + isInterpolating);
                 
                 if (isInterpolating && bufferedResults.Count < Config.NumInputFrames && bufferedResults.Count > 0)
                 {
-                    //Debug.Log("Underfill");
+                    Debug.Log("Underfill");
                     foreach (var landmark in bufferedResults)
                     {
                         for (int j = 0; j < Config.NumInputPoints; j++)
@@ -92,9 +92,9 @@ namespace Engine {
                 }
                 else if (bufferedResults.Count >= 60)
                 {
-                    //Debug.Log("Overfill");
+                    Debug.Log("Overfill");
                     var lastFrames = bufferedResults.GetRange(bufferedResults.Count - Config.NumInputFrames, Config.NumInputFrames);
-                    //Debug.Log("Buffer Gets " + lastFrames.Count);
+                    Debug.Log("Buffer Gets " + lastFrames.Count);
                     foreach (var landmark in lastFrames)
                     {
                         for (int j = 0; j < Config.NumInputPoints; j++)
@@ -108,7 +108,7 @@ namespace Engine {
                 
                 
                 
-                //Debug.Log("Input array got " + inputArray.Count);
+                Debug.Log("Input array got " + inputArray.Count);
 
                 if (inputArray.Count > 0)
                 {
@@ -117,7 +117,7 @@ namespace Engine {
                 buffer.Clear();
             });
             recognizer.AddCallback("default", (translation) => {
-                //Debug.Log(translation);
+                Debug.Log(translation);
             });
             if (inputCamera) inputCamera.AddCallback("default", image => {
                     posePredictor.Single(image, (int)(Time.realtimeSinceStartup * 1000));
@@ -128,9 +128,7 @@ namespace Engine {
             buffer.trigger = new NoTrigger<HandLandmarkerResult>();
             Poll();
             recognizer.outputFilters.Clear();
-            //Debug.Log(string.Join(", ", MakeLowercase(GameSettings.wordsPerLevel)));
-            List<string> filter = new List<string>(GameSettings.wordsPerLevel);
-            recognizer.outputFilters.Add(new FocusSublistFilter<string>(MakeLowercase(filter)));
+            recognizer.outputFilters.Add(new FocusSublistFilter<string>(GameSettings.wordsPerLevel));
             // recognizer.outputFilters.Add(new Thresholder<string>(0.8f));
             
         }
@@ -148,13 +146,5 @@ namespace Engine {
             if (screen.Visible) screen.Hide();
             else screen.Show();
         }
-        static List<string> MakeLowercase(List<string> words)
-    {
-        for (int i = 0; i < words.Count; i++)
-        {
-            words[i] = words[i].ToLower();
-        }
-        return words;
-    }
     }
 }

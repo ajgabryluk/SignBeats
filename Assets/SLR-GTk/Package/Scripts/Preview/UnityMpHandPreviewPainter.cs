@@ -80,13 +80,7 @@ namespace Preview {
                         _rt.Create();
                         screen.texture = _rt;
                     } 
-                    if (_result is { handLandmarks: not null }) {
-                        if (_result.Value.handLandmarks.Count <= 0) {
-                            _graphMaterial.SetColor(PointColor, new Color(0, 0, 0, 0));
-                            _graphMaterial.SetColor(LineColor, new Color(0, 0, 0, 0));
-                            return;
-                        }
-
+                    if (_result is { handLandmarks: not null } && _result.Value.handLandmarks.Count > 0 && _result.Value.handLandmarks[0] is {landmarks: not null} && _result.Value.handLandmarks[0].landmarks.Count > 0) {
                         var landmarks = _result.Value.handLandmarks[0].landmarks;
 
                         Vector4[] points = new Vector4[landmarks.Count];

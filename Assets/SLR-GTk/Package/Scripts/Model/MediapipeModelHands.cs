@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.IO;
 using Mediapipe;
-using Mediapipe.Tasks.Vision.Core;
 using Mediapipe.Tasks.Vision.HandLandmarker;
-using Mediapipe.Unity;
 using UnityEngine;
+using UnityEngine.Rendering;
 using RunningMode = Mediapipe.Tasks.Vision.Core.RunningMode;
 
 namespace Model {
@@ -58,6 +56,7 @@ namespace Model {
                     numHands: Config.NUM_HANDS,
                     runningMode: runningMode,
                     resultCallback: (i, _, timestampMs) => {
+                        if (!outputInputLookup.ContainsKey(timestampMs)) return;
                         foreach (var cb in callbacks.Values) {
                             cb(new ImageMPResultWrapper<HandLandmarkerResult>(
                                 i,
@@ -77,6 +76,25 @@ namespace Model {
                 ));
         }
 
+        private int imageCounter = 0; // Counter for image filenames
+
+        // public void Single(Texture2D image, long timestampMs) {
+        //     AsyncGPUReadback.WaitAllRequests();
+        //     AsyncGPUReadback.Request(image, 0, TextureFormat.RGBA32, request => {
+        //         if (request.hasError)
+        //         {
+        //             Debug.LogError("Readback failed!");
+        //         }
+        //         else
+        //         {
+        //             // image.SetPixels32(request.GetData<Color32>().ToArray());
+        //             // image.Apply();
+        //             image.LoadRawTextureData(request.GetData<byte>());
+        //             image.Apply();
+        //             _Single(image, (int)(Time.realtimeSinceStartup * 1000));
+        //         }
+        //     });
+        // }
 
         public void Single(Texture2D image, long timestamp/*, ImageProcessingOptions? imageProcessingOptions = null*/) {
             Image img = new Image(image.format.ToImageFormat(), image);

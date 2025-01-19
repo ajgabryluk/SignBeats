@@ -1,7 +1,7 @@
 {
-    "song": "LEVEL 2 TEST",
-    "bpm": "120",
+    "song": "Animals",
+    "bpm": "100",
     "stars": 0,
     "difficulty": "Medium",
-    "words": ["green", "mom", "dog", "look", "window"]
+    "words": ["Alligator", "Penguin", "Frog", "Cat", "Chicken"]
 }

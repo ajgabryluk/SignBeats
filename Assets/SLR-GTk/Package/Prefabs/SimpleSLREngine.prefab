@@ -25,6 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1981845032149965835}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 646.29095, y: 207.0231, z: -1.5836893}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,7 +33,6 @@ Transform:
   m_Children:
   - {fileID: 3966776518636389971}
   m_Father: {fileID: 0}
-  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3508694001495842164
 MonoBehaviour:
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screen: {fileID: 8321178621267249413}
   inputCamera: {fileID: 8400729566644043989}
-  modelFile: {fileID: 4900000, guid: d7510b2579cfb45b7ad84064e464ac53, type: 3}
+  modelFile: {fileID: 4900000, guid: e26a07b4441a946fb89354deb87d648e, type: 3}
   mappingFile: {fileID: 4900000, guid: 4e0a76a422e6d44cbb192251cb2ebd54, type: 3}
   mediapipeGraph: {fileID: 4900000, guid: c2bbc80fe38e74caf9d518de5f92d7dd, type: 3}
   isInterpolating: 1
@@ -98,7 +98,6 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3966776518636389971}
-  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -192,7 +191,6 @@ RectTransform:
   m_Children:
   - {fileID: 8968258265492319015}
   m_Father: {fileID: 3934829239177150351}
-  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

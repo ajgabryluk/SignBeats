@@ -71,10 +71,9 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-
 # Large Files
-Packages/com.github.homuler.mediapipe/Runtime/Plugins/Android/mediapipe_android.aar
-Packages/com.github.homuler.mediapipe/Runtime/Plugins/iOS/MediaPipeUnity.framework/MediaPipeUnity
+/[Aa]ssets/SLR-GTk/Package/Dependencies/com.github.homuler.mediapipe/Runtime/Plugins/Android/mediapipe_android.aar
+/[Aa]ssets/SLR-GTk/Package/Dependencies/com.github.homuler.mediapipe/Runtime/Plugins/iOS/MediaPipeUnity.framework/MediaPipeUnity
 Builds_BackUpThisFolder_ButDontShipItWithYourGame/
 Packages/com.github.homuler.mediapipe/Runtime/Plugins/Android/Ignore/
 Packages/com.github.asus4.tflite/Plugins/

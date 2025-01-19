@@ -84,7 +84,7 @@ Shader "Nana/HandLandmarkAnnotator"
             float4 frag (v2f i) : SV_Target
             {
                 // Adjust UVs to match the target aspect ratio
-                float2 adjustedUV = i.uv;
+                float2 adjustedUV = float2(1 - i.uv.x, i.uv.y);
                 float currentAspectRatio = _ScreenParams.x / _ScreenParams.y;
 
                 if (_AspectRatio > currentAspectRatio)
