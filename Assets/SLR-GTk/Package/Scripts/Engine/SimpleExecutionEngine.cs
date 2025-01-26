@@ -128,7 +128,8 @@ namespace Engine {
             buffer.trigger = new NoTrigger<HandLandmarkerResult>();
             Poll();
             recognizer.outputFilters.Clear();
-            recognizer.outputFilters.Add(new FocusSublistFilter<string>(GameSettings.wordsPerLevel));
+            List<string> filter = new List<string>(GameSettings.wordsPerLevel);
+            recognizer.outputFilters.Add(new FocusSublistFilter<string>(MakeLowercase(filter)));
             // recognizer.outputFilters.Add(new Thresholder<string>(0.8f));
             
         }
@@ -145,6 +146,14 @@ namespace Engine {
         public void Toggle() {
             if (screen.Visible) screen.Hide();
             else screen.Show();
+        }
+        static List<string> MakeLowercase(List<string> words)
+        {
+            for (int i = 0; i < words.Count; i++)
+            {
+                words[i] = words[i].ToLower();
+            }
+            return words;
         }
     }
 }

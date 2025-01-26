@@ -1855,6 +1855,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SimpleSLREngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3508694001495842164, guid: 497d5c774c3ce4f1ca5df896393cac60, type: 3}
+      propertyPath: modelFile
+      value: 
+      objectReference: {fileID: 4900000, guid: d7510b2579cfb45b7ad84064e464ac53, type: 3}
     - target: {fileID: 3934829239177150351, guid: 497d5c774c3ce4f1ca5df896393cac60, type: 3}
       propertyPath: m_RootOrder
       value: 5
