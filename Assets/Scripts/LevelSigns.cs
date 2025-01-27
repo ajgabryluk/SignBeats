@@ -104,6 +104,8 @@ public class LevelSigns : MonoBehaviour
                 string recognizedSign = GetComponent<TriggerRecognizer>().recognizedSign;
                 Debug.Log("Displayed Sign: " + signName);
                 Debug.Log("Recognized Sign: " + recognizedSign);
+                GetComponent<CsvWriter>().AddValue(signName);
+                GetComponent<CsvWriter>().AddValue(recognizedSign);
                 GetComponent<TriggerRecognizer>().ChangeScore(signName.ToLower() == recognizedSign);
             }
         }

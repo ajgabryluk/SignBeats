@@ -1243,6 +1243,7 @@ GameObject:
   - component: {fileID: 808555550}
   - component: {fileID: 808555552}
   - component: {fileID: 808555554}
+  - component: {fileID: 808555555}
   m_Layer: 0
   m_Name: GameControllers
   m_TagString: Untagged
@@ -1486,6 +1487,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recognizedSign: 
   scoreText: {fileID: 436560889}
+--- !u!114 &808555555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808555547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcf8a210f0abcde439cf674145002021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &902905188
 GameObject:
   m_ObjectHideFlags: 0
@@ -1941,7 +1954,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8968258265492319015, guid: 497d5c774c3ce4f1ca5df896393cac60, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -80
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
