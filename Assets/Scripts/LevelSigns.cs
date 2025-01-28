@@ -102,8 +102,21 @@ public class LevelSigns : MonoBehaviour
                 activeSigns[GameSettings.dotIndex - 1].GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/SignImages/{signName}Completed");   
                 GetComponent<TriggerRecognizer>().RunRecognizer();
                 string recognizedSign = GetComponent<TriggerRecognizer>().recognizedSign;
-                Debug.Log("Displayed Sign: " + signName);
-                Debug.Log("Recognized Sign: " + recognizedSign);
+                // Debug.Log("Displayed Sign: " + signName);
+                // Debug.Log("Recognized Sign: " + recognizedSign);
+                GetComponent<CsvWriter>().AddValue(signName);
+                GetComponent<CsvWriter>().AddValue(recognizedSign);
+                GetComponent<TriggerRecognizer>().ChangeScore(signName.ToLower() == recognizedSign);
+            }
+        }
+        if(currentMeasure - 2 > 0)
+        {
+            if(levelPositions[currentMeasure - 2].ContainsKey(7) && GameSettings.dotIndex == 0){
+                string signName = levelPositions[currentMeasure - 2][7]; 
+                GetComponent<TriggerRecognizer>().RunRecognizer();
+                string recognizedSign = GetComponent<TriggerRecognizer>().recognizedSign;
+                // Debug.Log("Displayed Sign: " + signName);
+                // Debug.Log("Recognized Sign: " + recognizedSign);
                 GetComponent<CsvWriter>().AddValue(signName);
                 GetComponent<CsvWriter>().AddValue(recognizedSign);
                 GetComponent<TriggerRecognizer>().ChangeScore(signName.ToLower() == recognizedSign);

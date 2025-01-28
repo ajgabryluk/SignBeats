@@ -65,11 +65,11 @@ namespace Engine {
 
                 if (bufferedResults.Count <= 0) return;
                 
-                Debug.Log("Starting Buffer trigger: Interpolating=" + isInterpolating);
+                //Debug.Log("Starting Buffer trigger: Interpolating=" + isInterpolating);
                 
                 if (isInterpolating && bufferedResults.Count < Config.NumInputFrames && bufferedResults.Count > 0)
                 {
-                    Debug.Log("Underfill");
+                    //Debug.Log("Underfill");
                     foreach (var landmark in bufferedResults)
                     {
                         for (int j = 0; j < Config.NumInputPoints; j++)
@@ -92,9 +92,9 @@ namespace Engine {
                 }
                 else if (bufferedResults.Count >= 60)
                 {
-                    Debug.Log("Overfill");
+                    //Debug.Log("Overfill");
                     var lastFrames = bufferedResults.GetRange(bufferedResults.Count - Config.NumInputFrames, Config.NumInputFrames);
-                    Debug.Log("Buffer Gets " + lastFrames.Count);
+                    //Debug.Log("Buffer Gets " + lastFrames.Count);
                     foreach (var landmark in lastFrames)
                     {
                         for (int j = 0; j < Config.NumInputPoints; j++)
@@ -108,7 +108,7 @@ namespace Engine {
                 
                 
                 
-                Debug.Log("Input array got " + inputArray.Count);
+                //Debug.Log("Input array got " + inputArray.Count);
 
                 if (inputArray.Count > 0)
                 {
@@ -117,7 +117,7 @@ namespace Engine {
                 buffer.Clear();
             });
             recognizer.AddCallback("default", (translation) => {
-                Debug.Log(translation);
+               // Debug.Log(translation);
             });
             if (inputCamera) inputCamera.AddCallback("default", image => {
                     posePredictor.Single(image, (int)(Time.realtimeSinceStartup * 1000));

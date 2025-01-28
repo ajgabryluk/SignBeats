@@ -42,7 +42,7 @@ namespace System {
 
         public void TriggerCallbacks() {
             var copy = internalBuffer.ToList();
-            Debug.Log("On Trigger got: " + copy.Count);
+           //Debug.Log("On Trigger got: " + copy.Count);
             foreach (var callback in callbacks) {
                 callback.Value(copy);
             }
