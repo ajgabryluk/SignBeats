@@ -4,7 +4,7 @@ using UnityEngine;
 public class CsvWriter : MonoBehaviour
 {
     // File name and path for the CSV
-    private string filePath = "SignBeats.csv";
+    private string filePath = "/SignBeats.csv";
     private string csvContent = "";
 
     void Start()
@@ -31,7 +31,7 @@ public class CsvWriter : MonoBehaviour
 
     public void WriteCsv()
     {
-        using (StreamWriter writer = new StreamWriter(filePath))
+        using (StreamWriter writer = new StreamWriter(Application.persistentDataPath + filePath))
         {
             writer.Write(csvContent);
         }

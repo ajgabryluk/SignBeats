@@ -19,8 +19,9 @@ public class LoadSignPositions : MonoBehaviour
 
     public void LoadJson()
     {
-        string fileName = $"Level {GameSettings.selectedLevel}.json";
-        string jsonContent = File.ReadAllText(Path.Combine(Application.dataPath, jsonFilePath, fileName));
+        string fileName = $"Level {GameSettings.selectedLevel}";
+        // string jsonContent = File.ReadAllText(Path.Combine(Application.dataPath, jsonFilePath, fileName));
+        string jsonContent = Resources.Load<TextAsset>("LevelDesigns/" + fileName).text;
         loadedData = JsonConvert.DeserializeObject<RhythmData>(jsonContent);
         Debug.Log(loadedData.lyrics);
         for (int i = 0; i < loadedData.rhythm.Count; i++)

@@ -11,14 +11,12 @@ public class TriggerRecognizer : MonoBehaviour
     public string recognizedSign = "";
     public TMP_Text scoreText;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        engine = GameObject.Find("SimpleSLREngine").GetComponent<SimpleExecutionEngine>();
-        engine.recognizer.AddCallback("Sign", GetSign);
-    }
     public void RunRecognizer()
     {
+        if (!engine) {
+            engine = GameObject.Find("SimpleSLREngine").GetComponent<SimpleExecutionEngine>();
+            engine.recognizer.AddCallback("Sign", GetSign);
+        }
         engine.buffer.TriggerCallbacks();  
     }
     public void GetSign(string sign)
