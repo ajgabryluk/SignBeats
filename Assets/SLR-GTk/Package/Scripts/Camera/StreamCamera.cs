@@ -89,7 +89,7 @@ namespace Camera {
                         // Ideally a reference counter should do the trick and allow for much efficient operation - can 
                         // look into that with a custom class to manage the resource instead of passing around Texture2D
                         // TODO: Reference Counter
-                        _webcamControlShader.SetFloat(RotationAngle, webCamTexture.videoRotationAngle);
+                        _webcamControlShader.SetFloat(RotationAngle, webCamTexture.videoRotationAngle - 90);
                         _webcamControlShader.SetInt("_HorizontalFlip", webCamTexture.videoVerticallyMirrored ? 1 : 0);
                         // Debug.Log($"Webcam rotation: {webCamTexture.videoRotationAngle}");
                         // Debug.Log($"Webcam resolution: {webCamTexture.width}x{webCamTexture.height}");
