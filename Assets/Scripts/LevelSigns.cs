@@ -34,6 +34,7 @@ public class LevelSigns : MonoBehaviour
         levelPositions = levelData.levelPositions;
         playedMeasures = levelData.loadedData.playedMeasures;
         lyrics.transform.Find("Viewport/Content").gameObject.GetComponent<TMP_Text>().text = string.Join("\n", levelData.loadedData.lyrics);
+        StartCoroutine(WaitForAudioToFinish(GetComponent<AudioSource>()));
     }
     public void PlaceSigns()
     {
@@ -106,6 +107,7 @@ public class LevelSigns : MonoBehaviour
                 // Debug.Log("Recognized Sign: " + recognizedSign);
                 GetComponent<CsvWriter>().AddValue(signName);
                 GetComponent<CsvWriter>().AddValue(recognizedSign);
+                GetComponent<CsvWriter>().NextRow();
                 GetComponent<TriggerRecognizer>().ChangeScore(signName.ToLower() == recognizedSign);
             }
         }
@@ -122,6 +124,11 @@ public class LevelSigns : MonoBehaviour
                 GetComponent<TriggerRecognizer>().ChangeScore(signName.ToLower() == recognizedSign);
             }
         }
+    }
+    private IEnumerator WaitForAudioToFinish(AudioSource source)
+    {
+        yield return new WaitForSeconds(source.clip.length);
+        GetComponent<CsvWriter>().WriteCsv();
     }
 }
 

@@ -12,6 +12,15 @@ using RunningMode = Mediapipe.Tasks.Vision.Core.RunningMode;
 namespace Engine {
     public class SimpleExecutionEngine : MonoBehaviour
     {
+        public class LogerFilter : PredictionFilter<string> {
+
+            public FilterUnit<string> Filter(FilterUnit<String> input) {
+                Debug.Log("Got probs: " + string.Join(", ", input.probabilities));
+                CsvWriter csvWriter = GameObject.Find("GameControllers").GetComponent<CsvWriter>();
+                csvWriter.AddValue(string.Join(" & ", input.probabilities));
+                return input;
+            }
+        }
         [SerializeField] private Preview.UnityMpHandPreviewPainter screen;
         [SerializeField] private Camera.StreamCamera inputCamera;
 
@@ -128,8 +137,10 @@ namespace Engine {
             buffer.trigger = new NoTrigger<HandLandmarkerResult>();
             Poll();
             recognizer.outputFilters.Clear();
+            recognizer.outputFilters.Add(new LogerFilter());
             List<string> filter = new List<string>(GameSettings.wordsPerLevel);
             recognizer.outputFilters.Add(new FocusSublistFilter<string>(MakeLowercase(filter)));
+            recognizer.outputFilters.Add(new LogerFilter());
             // recognizer.outputFilters.Add(new Thresholder<string>(0.8f));
             
         }

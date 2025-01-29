@@ -4,7 +4,7 @@ using UnityEngine;
 public class CsvWriter : MonoBehaviour
 {
     // File name and path for the CSV
-    private string filePath = "Test_CSV.csv";
+    private string filePath = "SignBeats.csv";
     private string csvContent = "";
 
     void Start()
